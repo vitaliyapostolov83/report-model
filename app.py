@@ -9,9 +9,16 @@ st.write(f"Ви вибрали кількість рядків: {number}")
 url = "https://raw.githubusercontent.com/vitaliyapostolov83/report-model/main/flats.csv" # URL до файлу на GitHub (візьми Raw файл)
 response = requests.get(url) # Завантажуємо файл
 
-if response.status_code == 200:# Якщо файл був успішно завантажений
-    data = pd.read_csv(StringIO(response.text))# Завантажуємо CSV в Pandas DataFrame
-    data = data.head(number)# Обмежуємо кількість рядків відповідно до вибору на слайдері
-    st.write(data)# Вивести обмежену таблицю на сторінці Streamlit
+# Якщо файл був успішно завантажений
+if response.status_code == 200:
+    # Завантажуємо CSV в Pandas DataFrame
+    data = pd.read_csv(StringIO(response.text))
+    
+    # Обмежуємо кількість рядків відповідно до вибору на слайдері
+    data = data.head(number)
+    
+    # Вивести таблицю з налаштуванням ширини колонок
+    st.dataframe(data, width=700)  # Регулює ширину всієї таблиці (у пікселях)
+    
 else:
     st.write("Не вдалося завантажити файл.")

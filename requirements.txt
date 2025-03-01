@@ -1,7 +1,5 @@
 streamlit
 pandas
 numpy
-seaborn
-numpy 
 matplotlib.pyplot
 StringIO

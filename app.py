@@ -8,7 +8,7 @@ st.title("Модель звіту по меблевику")
 
 # Додавання слайдера
 number = st.slider("Виберіть кількість рядків таблиці", 1, 1000)
-st.write(f"Ви вибрали кількість рядків {number}")
+st.write(f"Ви вибрали кількість рядків: {number}")
 
 # URL до файлу на GitHub (візьми Raw файл)
 url = "https://raw.githubusercontent.com/vitaliyapostolov83/report-model/main/flats.csv"  # Замінено на правильний шлях до твого файлу
@@ -20,6 +20,11 @@ response = requests.get(url)
 if response.status_code == 200:
     # Завантажуємо CSV в Pandas DataFrame
     data = pd.read_csv(StringIO(response.text))
-    st.write(data)  # Вивести на сторінці Streamlit
+    
+    # Обмежуємо кількість рядків відповідно до вибору на слайдері
+    data = data.head(number)
+    
+    # Вивести обмежену таблицю на сторінці Streamlit
+    st.write(data)
 else:
     st.write("Не вдалося завантажити файл.")

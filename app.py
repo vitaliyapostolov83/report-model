@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Заголовок
-st.title("Модель звіту")
+st.title("Модель звіту по меблевику")
 
 # Додавання слайдера
 number = st.slider("Виберіть кількість рядків таблиці", 1, 1000)

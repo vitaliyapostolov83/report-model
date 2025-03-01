@@ -1,19 +1,25 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
+import requests
+from io import StringIO
 
 # Заголовок
 st.title("Модель звіту по меблевику")
 
 # Додавання слайдера
 number = st.slider("Виберіть кількість рядків таблиці", 1, 1000)
-st.write(f"Ви вибрали кількість строк {number}")
+st.write(f"Ви вибрали кількість рядків {number}")
 
-# Створення таблиці з Pandas
-data = pd.DataFrame({
-    'Число': np.arange(1, number+1),
-    'Квадрат': np.arange(1, number+1) ** 2
-})
+# URL до файлу на GitHub (візьми Raw файл)
+url = "https://raw.githubusercontent.com/vitaliyapostolov83/report-model/main/flats.csv"  # Замінено на правильний шлях до твого файлу
 
-# Виведення таблиці
-st.write(data)
+# Завантажуємо файл
+response = requests.get(url)
+
+# Якщо файл був успішно завантажений
+if response.status_code == 200:
+    # Завантажуємо CSV в Pandas DataFrame
+    data = pd.read_csv(StringIO(response.text))
+    st.write(data)  # Вивести на сторінці Streamlit
+else:
+    st.write("Не вдалося завантажити файл.")

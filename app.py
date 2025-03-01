@@ -35,7 +35,7 @@ if response.status_code == 200:
     
     # Використання matplotlib для побудови графіка, наприклад, гістограма для одного стовпця
     if 'column_name' in data.columns:  # Перевірка, чи існує стовпець з ім'ям 'column_name'
-        plt.hist(data['column_name'], bins=30, edgecolor='black')
+        plt.hist(data['Ціна'], bins=30, edgecolor='black')
         plt.title('Гістограма для стовпця column_name')
         plt.xlabel('Значення')
         plt.ylabel('Частота')

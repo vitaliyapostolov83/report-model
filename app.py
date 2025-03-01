@@ -34,13 +34,13 @@ if response.status_code == 200:
     plt.figure(figsize=(10, 6))  # Налаштування розміру графіка
     
     # Використання matplotlib для побудови графіка, наприклад, гістограма для одного стовпця
-    if 'column_name' in data.columns:  # Перевірка, чи існує стовпець з ім'ям 'column_name'
+    if 'Ціна' in data.columns:  # Перевірка, чи існує стовпець з ім'ям 'column_name'
         plt.hist(data['Ціна'], bins=30, edgecolor='black')
-        plt.title('Гістограма для стовпця column_name')
+        plt.title('Гістограма для стовпця Ціна')
         plt.xlabel('Значення')
         plt.ylabel('Частота')
         st.pyplot()  # Вивести графік в Streamlit
     else:
-        st.write("Стовпець 'column_name' не знайдений у даних.")
+        st.write("Стовпець 'Ціна' не знайдений у даних.")
 else:
     st.write("Не вдалося завантажити файл.")
